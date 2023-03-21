@@ -1,0 +1,11 @@
+// STATUS: NOT STARTED
+
+#ifndef M_NAGAURA_REIKOKU_SRC_INGAME_MENU_GAMEOVER_H
+#define M_NAGAURA_REIKOKU_SRC_INGAME_MENU_GAMEOVER_H
+
+
+void StartGameOver();
+void ReturnGameOver();
+void GameOverMenuMain();
+
+#endif // M_NAGAURA_REIKOKU_SRC_INGAME_MENU_GAMEOVER_H

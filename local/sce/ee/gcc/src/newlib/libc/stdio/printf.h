@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef LOCAL_SCE_EE_GCC_SRC_NEWLIB_LIBC_STDIO_PRINTF_H
+#define LOCAL_SCE_EE_GCC_SRC_NEWLIB_LIBC_STDIO_PRINTF_H
+
+int _printf_r(_reent *ptr, char *fmt);
+int printf(char *fmt);
+
+#endif // LOCAL_SCE_EE_GCC_SRC_NEWLIB_LIBC_STDIO_PRINTF_H
