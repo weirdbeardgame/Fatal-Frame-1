@@ -1,24 +1,23 @@
 // STATUS: NOT STARTED
 
 typedef struct {
-	int screen_flag;
-	int time;
-	int cnt;
-	u_char col_r;
-	u_char col_g;
-	u_char col_b;
-	u_char now_alpha;
+  int screen_flag;
+  int time;
+  int cnt;
+  u_char col_r;
+  u_char col_g;
+  u_char col_b;
+  u_char now_alpha;
 } SCRCTRL;
 
 static SCRCTRL sc_col = {
-	/* .screen_flag = */ 0,
-	/* .time = */ 0,
-	/* .cnt = */ 0,
-	/* .col_r = */ 0,
-	/* .col_g = */ 0,
-	/* .col_b = */ 0,
-	/* .now_alpha = */ 0
-};
+    /* .screen_flag = */ 0,
+    /* .time = */ 0,
+    /* .cnt = */ 0,
+    /* .col_r = */ 0,
+    /* .col_g = */ 0,
+    /* .col_b = */ 0,
+    /* .now_alpha = */ 0};
 static int old_ltol_addr1 = -1;
 static int old_ltol_addr2 = -1;
 static u_char old_cam_no;
@@ -54,9 +53,10 @@ void SetParam(int alp, int time, u_char r, u_char g, u_char b, int flag) {
 
 int ScreenCtrl() {
   uint uVar1;
-  
+
   if (sc_col.now_alpha != '\0') {
-    SetPanel2(0x10,0.0,0.0,640.0,448.0,0,sc_col.col_r,sc_col.col_g,sc_col.col_g,sc_col.now_alpha);
+    SetPanel2(0x10, 0.0, 0.0, 640.0, 448.0, 0, sc_col.col_r, sc_col.col_g,
+              sc_col.col_g, sc_col.now_alpha);
   }
   if (sc_col.screen_flag == 1) {
     if (sc_col.time == 0) {
@@ -72,8 +72,7 @@ int ScreenCtrl() {
       InitLoadStartLock();
       return sc_col.screen_flag;
     }
-  }
-  else {
+  } else {
     if (sc_col.screen_flag < 2) {
       return sc_col.screen_flag;
     }
@@ -92,18 +91,21 @@ int ScreenCtrl() {
   return sc_col.screen_flag;
 }
 
-void SetSquareS(int pri, float x1, float y1, float x4, float y4, u_char r, u_char g, u_char b, u_char a) {
-  SetSquare(pri,x1,y1,x1,y4,x4,y1,x4,y4,r,g,b,a);
+void SetSquareS(int pri, float x1, float y1, float x4, float y4, u_char r,
+                u_char g, u_char b, u_char a) {
+  SetSquare(pri, x1, y1, x1, y4, x4, y1, x4, y4, r, g, b, a);
   return;
 }
 
-void SetSquare(int pri, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, u_char r, u_char g, u_char b, u_char a) {
-	int x[4];
-	int y[4];
-	int z;
-	int mpri;
-	float div;
-	
+void SetSquare(int pri, float x1, float y1, float x2, float y2, float x3,
+               float y3, float x4, float y4, u_char r, u_char g, u_char b,
+               u_char a) {
+  int x[4];
+  int y[4];
+  int z;
+  int mpri;
+  float div;
+
   Q_WORDDATA *pQVar1;
   uint uVar2;
   Q_WORDDATA *pQVar3;
@@ -111,9 +113,9 @@ void SetSquare(int pri, float x1, float y1, float x2, float y2, float x3, float 
   Q_WORDDATA *pQVar5;
   Q_WORDDATA *pQVar6;
   float fVar7;
-  int x [4];
-  int y [4];
-  
+  int x[4];
+  int y[4];
+
   fVar7 = 1.0;
   if (g_bInterlace != '\0') {
     fVar7 = 2.0;
@@ -173,13 +175,15 @@ void SetSquare(int pri, float x1, float y1, float x2, float y2, float x3, float 
   return;
 }
 
-void SetSquare2s(int pri, float x1, float y1, float x4, float y4, u_char r1, u_char g1, u_char b1, u_char r2, u_char g2, u_char b2, u_char a) {
-	int x[4];
-	int y[4];
-	int z;
-	int mpri;
-	float div;
-	
+void SetSquare2s(int pri, float x1, float y1, float x4, float y4, u_char r1,
+                 u_char g1, u_char b1, u_char r2, u_char g2, u_char b2,
+                 u_char a) {
+  int x[4];
+  int y[4];
+  int z;
+  int mpri;
+  float div;
+
   Q_WORDDATA *pQVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
@@ -192,9 +196,9 @@ void SetSquare2s(int pri, float x1, float y1, float x4, float y4, u_char r1, u_c
   uint uVar10;
   uint uVar11;
   float fVar12;
-  int x [4];
-  int y [4];
-  
+  int x[4];
+  int y[4];
+
   fVar12 = 1.0;
   if (g_bInterlace != '\0') {
     fVar12 = 2.0;
@@ -271,18 +275,18 @@ void SetSquare2s(int pri, float x1, float y1, float x4, float y4, u_char r1, u_c
 }
 
 void SetSquareZ(int pri, float x1, float y1, float x4, float y4, int z) {
-	int x[4];
-	int y[4];
-	float div;
-	
+  int x[4];
+  int y[4];
+  float div;
+
   Q_WORDDATA *pQVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
   Q_WORDDATA *pQVar4;
   float fVar5;
-  int x [4];
-  int y [4];
-  
+  int x[4];
+  int y[4];
+
   fVar5 = 1.0;
   if (g_bInterlace != '\0') {
     fVar5 = 2.0;
@@ -326,16 +330,18 @@ void SetSquareZ(int pri, float x1, float y1, float x4, float y4, int z) {
   return;
 }
 
-void SetPanel(u_int pri, float x1, float y1, float x2, float y2, u_char r, u_char g, u_char b, u_char a) {
-  SetPanel2(pri,x1,y1,x2,y2,1,r,g,b,a);
+void SetPanel(u_int pri, float x1, float y1, float x2, float y2, u_char r,
+              u_char g, u_char b, u_char a) {
+  SetPanel2(pri, x1, y1, x2, y2, 1, r, g, b, a);
   return;
 }
 
-void SetPanel2(u_int pri, float x1, float y1, float x2, float y2, int z, u_char r, u_char g, u_char b, u_char a) {
-	SQAR_DAT sq;
-	DISP_SQAR dq;
-	int i;
-	
+void SetPanel2(u_int pri, float x1, float y1, float x2, float y2, int z,
+               u_char r, u_char g, u_char b, u_char a) {
+  SQAR_DAT sq;
+  DISP_SQAR dq;
+  int i;
+
   undefined *puVar1;
   uint uVar2;
   ulong *puVar3;
@@ -343,7 +349,7 @@ void SetPanel2(u_int pri, float x1, float y1, float x2, float y2, int z, u_char 
   int iVar5;
   SQAR_DAT sq;
   DISP_SQAR dq;
-  
+
   puVar1 = (undefined *)((int)&sq.h + 3);
   uVar2 = (uint)puVar1 & 7;
   puVar3 = (ulong *)(puVar1 + -uVar2);
@@ -356,9 +362,10 @@ void SetPanel2(u_int pri, float x1, float y1, float x2, float y2, int z, u_char 
   sq._8_8_ = DAT_0034a508;
   uVar2 = (uint)&sq.alpha & 7;
   puVar4 = &sq.alpha + -uVar2;
-  *(ulong *)puVar4 = *(ulong *)puVar4 & -1L << (uVar2 + 1) * 8 | DAT_0034a510 >> (7 - uVar2) * 8;
+  *(ulong *)puVar4 = *(ulong *)puVar4 & -1L << (uVar2 + 1) * 8 |
+                     DAT_0034a510 >> (7 - uVar2) * 8;
   sq._16_8_ = DAT_0034a510;
-  CopySqrDToSqr(&dq,&sq);
+  CopySqrDToSqr(&dq, &sq);
   dq.x[0] = (int)x1;
   dq.zbuf = (long)z << 0x20 | 0x100008c;
   dq.y[0] = (int)y1;
@@ -383,31 +390,35 @@ void SetPanel2(u_int pri, float x1, float y1, float x2, float y2, int z, u_char 
   return;
 }
 
-void SetSquareSN(int pri, float x1, float y1, float x4, float y4, u_char r, u_char g, u_char b, u_char a) {
-  SetSquare(pri,x1,y1,x1,y4,x4,y1,x4,y4,r,g,b,a);
+void SetSquareSN(int pri, float x1, float y1, float x4, float y4, u_char r,
+                 u_char g, u_char b, u_char a) {
+  SetSquare(pri, x1, y1, x1, y4, x4, y1, x4, y4, r, g, b, a);
   return;
 }
 
-void SetSquareN(int pri, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, u_char r, u_char g, u_char b, u_char a) {
+void SetSquareN(int pri, float x1, float y1, float x2, float y2, float x3,
+                float y3, float x4, float y4, u_char r, u_char g, u_char b,
+                u_char a) {
   return;
 }
 
-void SetTriangle(int pri, float x1, float y1, float x2, float y2, float x3, float y3, u_char r, u_char g, u_char b, u_char a) {
-	int x[3];
-	int y[3];
-	int z;
-	int mpri;
-	float div;
-	
+void SetTriangle(int pri, float x1, float y1, float x2, float y2, float x3,
+                 float y3, u_char r, u_char g, u_char b, u_char a) {
+  int x[3];
+  int y[3];
+  int z;
+  int mpri;
+  float div;
+
   Q_WORDDATA *pQVar1;
   uint uVar2;
   Q_WORDDATA *pQVar3;
   Q_WORDDATA *pQVar4;
   Q_WORDDATA *pQVar5;
   float fVar6;
-  int x [3];
-  int y [3];
-  
+  int x[3];
+  int y[3];
+
   fVar6 = 1.0;
   if (g_bInterlace != '\0') {
     fVar6 = 2.0;
@@ -459,20 +470,22 @@ void SetTriangle(int pri, float x1, float y1, float x2, float y2, float x3, floa
   return;
 }
 
-void SetTriangleZ(int pri, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, u_char r, u_char g, u_char b, u_char a) {
-	int x[3];
-	int y[3];
-	float div;
-	
+void SetTriangleZ(int pri, float x1, float y1, float z1, float x2, float y2,
+                  float z2, float x3, float y3, float z3, u_char r, u_char g,
+                  u_char b, u_char a) {
+  int x[3];
+  int y[3];
+  float div;
+
   uint uVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
   Q_WORDDATA *pQVar4;
   Q_WORDDATA *pQVar5;
   float fVar6;
-  int x [3];
-  int y [3];
-  
+  int x[3];
+  int y[3];
+
   fVar6 = 1.0;
   if (g_bInterlace != '\0') {
     fVar6 = 2.0;
@@ -534,22 +547,23 @@ void SetTriangleZ(int pri, float x1, float y1, float z1, float x2, float y2, flo
   return;
 }
 
-void SetLine(int pri, float x1, float y1, float x2, float y2, u_char r, u_char g, u_char b, u_char a) {
-	int x[2];
-	int y[2];
-	int z;
-	int mpri;
-	float div;
-	
+void SetLine(int pri, float x1, float y1, float x2, float y2, u_char r,
+             u_char g, u_char b, u_char a) {
+  int x[2];
+  int y[2];
+  int z;
+  int mpri;
+  float div;
+
   Q_WORDDATA *pQVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
   Q_WORDDATA *pQVar4;
   uint pri_00;
   float fVar5;
-  int x [2];
-  int y [2];
-  
+  int x[2];
+  int y[2];
+
   fVar5 = 1.0;
   if (g_bInterlace != '\0') {
     fVar5 = 2.0;
@@ -595,18 +609,19 @@ void SetLine(int pri, float x1, float y1, float x2, float y2, u_char r, u_char g
   return;
 }
 
-void SetLine2(int pri, float x1, float y1, float x2, float y2, u_char r, u_char g, u_char b, u_char a) {
-	u_char rr;
-	u_char gg;
-	u_char bb;
-	float d;
-	float dw;
-	
+void SetLine2(int pri, float x1, float y1, float x2, float y2, u_char r,
+              u_char g, u_char b, u_char a) {
+  u_char rr;
+  u_char gg;
+  u_char bb;
+  float d;
+  float dw;
+
   uint uVar1;
   uint uVar2;
   uint uVar3;
   float fVar4;
-  
+
   uVar2 = (int)(char)g & 0xff;
   uVar1 = (int)(char)r & 0xff;
   uVar3 = (int)(char)b & 0xff;
@@ -616,8 +631,7 @@ void SetLine2(int pri, float x1, float y1, float x2, float y2, u_char r, u_char 
     uVar1 = (int)((float)uVar1 * 0.5) & 0xff;
     uVar2 = (int)((float)uVar2 * 0.5) & 0xff;
     uVar3 = (int)((float)uVar3 * 0.5) & 0xff;
-  }
-  else if ((30.0 < fVar4) || (fVar4 < -30.0)) {
+  } else if ((30.0 < fVar4) || (fVar4 < -30.0)) {
     if (fVar4 < 0.0) {
       fVar4 = -fVar4;
     }
@@ -626,37 +640,37 @@ void SetLine2(int pri, float x1, float y1, float x2, float y2, u_char r, u_char 
     uVar1 = (int)((float)uVar1 * fVar4) & 0xff;
     uVar2 = (int)((float)uVar2 * fVar4) & 0xff;
   }
-  SetLine(pri,x1,y1,x2,y2,(uchar)uVar1,(uchar)uVar2,(uchar)uVar3,a);
+  SetLine(pri, x1, y1, x2, y2, (uchar)uVar1, (uchar)uVar2, (uchar)uVar3, a);
   return;
 }
 
 void DrawPoint(float *mpos, int no) {
-	int n;
-	int clip;
-	sceVu0FMATRIX wlm;
-	sceVu0FMATRIX slm;
-	sceVu0FVECTOR fzero;
-	sceVu0IVECTOR ivec;
-	
+  int n;
+  int clip;
+  sceVu0FMATRIX wlm;
+  sceVu0FMATRIX slm;
+  sceVu0FVECTOR fzero;
+  sceVu0IVECTOR ivec;
+
   char cVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
   int iVar4;
   Q_WORDDATA *pQVar5;
-  float wlm [4] [4];
-  float slm [4] [4];
-  float fzero [4];
-  int ivec [4];
-  
-  memset(fzero,0,0x10);
+  float wlm[4][4];
+  float slm[4][4];
+  float fzero[4];
+  int ivec[4];
+
+  memset(fzero, 0, 0x10);
   fzero[3] = 1.0;
   sceVu0UnitMatrix((Matrix4x4 *)wlm);
   wlm[0][0] = 25.0;
   wlm[2][2] = 25.0;
   wlm[1][1] = 25.0;
-  sceVu0TransMatrix((Matrix4x4 *)wlm,(Matrix4x4 *)wlm,(Vector4 *)mpos);
-  sceVu0MulMatrix((Matrix4x4 *)slm,&SgWSMtx,(Matrix4x4 *)wlm);
-  sceVu0RotTransPers(ivec,(Matrix4x4 *)slm,fzero,0);
+  sceVu0TransMatrix((Matrix4x4 *)wlm, (Matrix4x4 *)wlm, (Vector4 *)mpos);
+  sceVu0MulMatrix((Matrix4x4 *)slm, &SgWSMtx, (Matrix4x4 *)wlm);
+  sceVu0RotTransPers(ivec, (Matrix4x4 *)slm, fzero, 0);
   cVar1 = 0x2800 < ivec[0] - 0x6c00U;
   if (0xe00 < ivec[1] - 0x7900U) {
     cVar1 = cVar1 + '\x01';
@@ -698,32 +712,32 @@ void DrawPoint(float *mpos, int no) {
 }
 
 void DrawPoint2(float *mpos, u_char r, u_char g, u_char b, u_char a) {
-	int n;
-	int clip;
-	sceVu0FMATRIX wlm;
-	sceVu0FMATRIX slm;
-	sceVu0FVECTOR fzero;
-	sceVu0IVECTOR ivec;
-	
+  int n;
+  int clip;
+  sceVu0FMATRIX wlm;
+  sceVu0FMATRIX slm;
+  sceVu0FVECTOR fzero;
+  sceVu0IVECTOR ivec;
+
   char cVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
   int iVar4;
   Q_WORDDATA *pQVar5;
-  float wlm [4] [4];
-  float slm [4] [4];
-  float fzero [4];
-  int ivec [4];
-  
-  memset(fzero,0,0x10);
+  float wlm[4][4];
+  float slm[4][4];
+  float fzero[4];
+  int ivec[4];
+
+  memset(fzero, 0, 0x10);
   fzero[3] = 1.0;
   sceVu0UnitMatrix((Matrix4x4 *)wlm);
   wlm[0][0] = 25.0;
   wlm[2][2] = 25.0;
   wlm[1][1] = 25.0;
-  sceVu0TransMatrix((Matrix4x4 *)wlm,(Matrix4x4 *)wlm,(Vector4 *)mpos);
-  sceVu0MulMatrix((Matrix4x4 *)slm,&SgWSMtx,(Matrix4x4 *)wlm);
-  sceVu0RotTransPers(ivec,(Matrix4x4 *)slm,fzero,0);
+  sceVu0TransMatrix((Matrix4x4 *)wlm, (Matrix4x4 *)wlm, (Vector4 *)mpos);
+  sceVu0MulMatrix((Matrix4x4 *)slm, &SgWSMtx, (Matrix4x4 *)wlm);
+  sceVu0RotTransPers(ivec, (Matrix4x4 *)slm, fzero, 0);
   cVar1 = 0x2800 < ivec[0] - 0x6c00U;
   if (0xe00 < ivec[1] - 0x7900U) {
     cVar1 = cVar1 + '\x01';
@@ -764,17 +778,18 @@ void DrawPoint2(float *mpos, u_char r, u_char g, u_char b, u_char a) {
   return;
 }
 
-void DrawLine(float *mpos1, u_char r1, u_char g1, u_char b1, u_char a1, float *mpos2, u_char r2, u_char g2, int b2, int a2) {
-	u_char b2;
-	u_char a2;
-	int i;
-	int n;
-	int clip;
-	sceVu0FMATRIX wlm;
-	sceVu0FMATRIX slm;
-	sceVu0FVECTOR fzero;
-	sceVu0IVECTOR ivec[2];
-	
+void DrawLine(float *mpos1, u_char r1, u_char g1, u_char b1, u_char a1,
+              float *mpos2, u_char r2, u_char g2, int b2, int a2) {
+  u_char b2;
+  u_char a2;
+  int i;
+  int n;
+  int clip;
+  sceVu0FMATRIX wlm;
+  sceVu0FMATRIX slm;
+  sceVu0FVECTOR fzero;
+  sceVu0IVECTOR ivec[2];
+
   uint uVar1;
   Q_WORDDATA *pQVar2;
   uint uVar3;
@@ -782,29 +797,29 @@ void DrawLine(float *mpos1, u_char r1, u_char g1, u_char b1, u_char a1, float *m
   Q_WORDDATA *pQVar5;
   int iVar6;
   Q_WORDDATA *pQVar7;
-  int (*paiVar8) [4];
-  float wlm [4] [4];
-  float slm [4] [4];
-  float fzero [4];
-  int ivec [2] [4];
-  
-  memset(fzero,0,0x10);
+  int(*paiVar8)[4];
+  float wlm[4][4];
+  float slm[4][4];
+  float fzero[4];
+  int ivec[2][4];
+
+  memset(fzero, 0, 0x10);
   fzero[3] = 1.0;
   sceVu0UnitMatrix((Matrix4x4 *)wlm);
   wlm[2][2] = 25.0;
   wlm[1][1] = 25.0;
   wlm[0][0] = 25.0;
-  sceVu0TransMatrix((Matrix4x4 *)wlm,(Matrix4x4 *)wlm,(Vector4 *)mpos1);
-  sceVu0MulMatrix((Matrix4x4 *)slm,&SgWSMtx,(Matrix4x4 *)wlm);
+  sceVu0TransMatrix((Matrix4x4 *)wlm, (Matrix4x4 *)wlm, (Vector4 *)mpos1);
+  sceVu0MulMatrix((Matrix4x4 *)slm, &SgWSMtx, (Matrix4x4 *)wlm);
   paiVar8 = ivec;
-  sceVu0RotTransPers(paiVar8,(Matrix4x4 *)slm,fzero,0);
+  sceVu0RotTransPers(paiVar8, (Matrix4x4 *)slm, fzero, 0);
   sceVu0UnitMatrix((Matrix4x4 *)wlm);
   wlm[0][0] = 25.0;
   wlm[2][2] = 25.0;
   wlm[1][1] = 25.0;
-  sceVu0TransMatrix((Matrix4x4 *)wlm,(Matrix4x4 *)wlm,(Vector4 *)mpos2);
-  sceVu0MulMatrix((Matrix4x4 *)slm,&SgWSMtx,(Matrix4x4 *)wlm);
-  sceVu0RotTransPers(ivec[1],(Matrix4x4 *)slm,fzero,0);
+  sceVu0TransMatrix((Matrix4x4 *)wlm, (Matrix4x4 *)wlm, (Vector4 *)mpos2);
+  sceVu0MulMatrix((Matrix4x4 *)slm, &SgWSMtx, (Matrix4x4 *)wlm);
+  sceVu0RotTransPers(ivec[1], (Matrix4x4 *)slm, fzero, 0);
   uVar1 = 0;
   uVar3 = 0;
   do {
@@ -866,22 +881,23 @@ void DrawLine(float *mpos1, u_char r1, u_char g1, u_char b1, u_char a1, float *m
   return;
 }
 
-void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_char r, u_char g, u_char b, u_char a) {
-	int i;
-	int bak;
-	float th;
-	float tw;
-	u_int clpz2;
-	u_long tx0;
-	sceVu0FMATRIX slm;
-	sceVu0IVECTOR ivec[4];
-	sceVu0FVECTOR ppos[4];
-	float twoby[11];
-	float stq[2];
-	U32DATA ts[4];
-	U32DATA tt[4];
-	U32DATA tq[4];
-	
+void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h,
+                    u_char r, u_char g, u_char b, u_char a) {
+  int i;
+  int bak;
+  float th;
+  float tw;
+  u_int clpz2;
+  u_long tx0;
+  sceVu0FMATRIX slm;
+  sceVu0IVECTOR ivec[4];
+  sceVu0FVECTOR ppos[4];
+  float twoby[11];
+  float stq[2];
+  U32DATA ts[4];
+  U32DATA tt[4];
+  U32DATA tq[4];
+
   ushort uVar1;
   U32DATA UVar2;
   ulong *puVar3;
@@ -889,7 +905,7 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
   Q_WORDDATA *pQVar5;
   int iVar6;
   uint uVar7;
-  float (*pafVar8) [4];
+  float(*pafVar8)[4];
   int iVar9;
   Q_WORDDATA *pQVar10;
   Q_WORDDATA *pQVar11;
@@ -902,20 +918,20 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
   U32DATA *pUVar18;
   uint uVar19;
   int iVar20;
-  int (*paiVar21) [4];
+  int(*paiVar21)[4];
   U32DATA *pUVar22;
   U32DATA *pUVar23;
   float fVar24;
   float fVar25;
   float num;
-  float slm [4] [4];
-  int ivec [4] [4];
-  float ppos [4] [4];
-  float twoby [11];
-  float stq [2];
-  U32DATA ts [4];
-  U32DATA tt [4];
-  U32DATA tq [4];
+  float slm[4][4];
+  int ivec[4][4];
+  float ppos[4][4];
+  float twoby[11];
+  float stq[2];
+  U32DATA ts[4];
+  U32DATA tt[4];
+  U32DATA tq[4];
   DRAW_ENV *local_f0;
   int local_ec;
   uint local_e8;
@@ -923,8 +939,8 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
   uint local_e0;
   uint local_dc;
   ulong tx0;
-  int (*local_d0) [4];
-  
+  int(*local_d0)[4];
+
   local_e8 = (int)(char)r & 0xff;
   local_e4 = (int)(char)g & 0xff;
   local_e0 = (int)(char)b & 0xff;
@@ -964,7 +980,8 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
   local_d0 = ivec;
   uVar7 = (int)stq + 7U & 7;
   puVar3 = (ulong *)(((int)stq + 7U) - uVar7);
-  *puVar3 = *puVar3 & -1L << (uVar7 + 1) * 8 | (ulong)DAT_003563c8 >> (7 - uVar7) * 8;
+  *puVar3 =
+      *puVar3 & -1L << (uVar7 + 1) * 8 | (ulong)DAT_003563c8 >> (7 - uVar7) * 8;
   stq = DAT_003563c8;
   pUVar16 = tq;
   pUVar14 = ts;
@@ -973,15 +990,13 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
   do {
     if ((uVar19 & 1) == 0) {
       fVar24 = -w * 0.5;
-    }
-    else {
+    } else {
       fVar24 = w * 0.5;
     }
     (*pafVar8)[0] = fVar24;
     if ((int)uVar19 / 2 == 0) {
       fVar24 = h * 0.5;
-    }
-    else {
+    } else {
       fVar24 = -h * 0.5;
     }
     (*pafVar8)[1] = fVar24;
@@ -990,14 +1005,14 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
     (*pafVar8)[3] = 1.0;
     pafVar8 = pafVar8[1];
   } while ((int)uVar19 < 4);
-  sceVu0MulMatrix((Matrix4x4 *)slm,&SgWSMtx,(Matrix4x4 *)wlm);
+  sceVu0MulMatrix((Matrix4x4 *)slm, &SgWSMtx, (Matrix4x4 *)wlm);
   fVar24 = 0.0;
-  sceVu0RotTransPersN(local_d0,slm,ppos,4,1);
+  sceVu0RotTransPersN(local_d0, slm, ppos, 4, 1);
   iVar20 = 0;
   iVar6 = (local_ec + monochrome_mode) * 0x20;
   uVar12 = *(ulong *)(&effdat + iVar6);
   uVar1 = *(ushort *)(&DAT_0026be4e + iVar6);
-  num = (float)(uint)*(ushort *)(&DAT_0026be4c + iVar6);
+  num = (float)(uint) * (ushort *)(&DAT_0026be4c + iVar6);
   pUVar23 = pUVar15;
   pUVar22 = pUVar14;
   pUVar18 = pUVar16;
@@ -1006,15 +1021,13 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
     if (((uint)(*paiVar21)[0] < 0x4000) || (0xc000 < (uint)(*paiVar21)[0])) {
       fVar24 = 1.0;
       uVar7 = (*paiVar21)[1];
-    }
-    else {
+    } else {
       uVar7 = (*paiVar21)[1];
     }
     if ((uVar7 < 0x4000) || (0xc000 < uVar7)) {
       fVar24 = 1.0;
       uVar7 = (*paiVar21)[2];
-    }
-    else {
+    } else {
       uVar7 = (*paiVar21)[2];
     }
     if ((uVar7 == 0) || (0xffffff < uVar7)) {
@@ -1104,26 +1117,26 @@ void Set3DPosTexure(float *wlm[4], DRAW_ENV *de, int texno, float w, float h, u_
 }
 
 void _SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
-	int xx[4];
-	int yy[4];
-	int mz;
-	u_int tw;
-	u_int th;
-	float div;
-	float mx;
-	float my;
-	float mscw;
-	float msch;
-	float mszw;
-	float mszh;
-	float px;
-	float py;
-	float pw;
-	float ph;
-	u_char malp;
-	sceGsTex0 Load;
-	sceGsTex0 Change;
-	
+  int xx[4];
+  int yy[4];
+  int mz;
+  u_int tw;
+  u_int th;
+  float div;
+  float mx;
+  float my;
+  float mscw;
+  float msch;
+  float mszw;
+  float mszh;
+  float px;
+  float py;
+  float pw;
+  float ph;
+  u_char malp;
+  sceGsTex0 Load;
+  sceGsTex0 Change;
+
   byte bVar1;
   uint uVar2;
   int iVar3;
@@ -1141,9 +1154,9 @@ void _SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
   float fVar13;
   float fVar14;
   float fVar15;
-  int xx [4];
-  int yy [4];
-  
+  int xx[4];
+  int yy[4];
+
   fVar15 = sd->size_w * sd->scale_w;
   fVar13 = sd->size_h * sd->scale_h;
   bVar1 = sd->alpha;
@@ -1186,8 +1199,7 @@ void _SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
     pQVar5[ndpkt + 3].ul64[1] = 6;
     pQVar5[ndpkt + 4].ul64[1] = 6;
     pQVar5[ndpkt + 4].ul64[0] = unaff_s2;
-  }
-  else {
+  } else {
     pQVar5[ndpkt + 3].ul64[1] = 6;
     pQVar5[ndpkt + 3].ul64[0] = (ulong)sVar8;
     pQVar5[ndpkt + 4].ul64[1] = 0x7f;
@@ -1200,8 +1212,7 @@ void _SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
   pQVar4->ul64[0] = 0x161;
   if (atype == 0) {
     uVar6 = 0x8000000044;
-  }
-  else {
+  } else {
     uVar6 = (ulong)bVar1 << 0x20 | 100;
   }
   ndpkt = iVar3 + 6;
@@ -1222,8 +1233,7 @@ void _SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
   pQVar5->ui32[2] = 0x80;
   if (atype == 0) {
     pQVar5->ui32[3] = (uint)bVar1;
-  }
-  else {
+  } else {
     pQVar5->ui32[3] = 0x80;
   }
   pQVar5 = pbuf;
@@ -1252,31 +1262,31 @@ void _SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
 }
 
 void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
-	int xx[4];
-	int yy[4];
-	int mz;
-	u_int th;
-	float div;
-	int u[11];
-	int v;
-	int x[11];
-	int i;
-	int n;
-	int mtw;
-	float wx;
-	float mx;
-	float my;
-	float mscw;
-	float msch;
-	float mszw;
-	float mszh;
-	float px;
-	float py;
-	float ph;
-	u_char malp;
-	sceGsTex0 Load;
-	sceGsTex0 Change;
-	
+  int xx[4];
+  int yy[4];
+  int mz;
+  u_int th;
+  float div;
+  int u[11];
+  int v;
+  int x[11];
+  int i;
+  int n;
+  int mtw;
+  float wx;
+  float mx;
+  float my;
+  float mscw;
+  float msch;
+  float mszw;
+  float mszh;
+  float px;
+  float py;
+  float ph;
+  u_char malp;
+  sceGsTex0 Load;
+  sceGsTex0 Change;
+
   byte bVar1;
   uint uVar2;
   uint uVar3;
@@ -1298,11 +1308,11 @@ void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
   float fVar17;
   float fVar18;
   float fVar19;
-  int xx [4];
-  int yy [4];
-  int u [11];
-  int x [11];
-  
+  int xx[4];
+  int yy[4];
+  int u[11];
+  int x[11];
+
   fVar18 = sd->size_w * sd->scale_w;
   fVar19 = sd->size_h * sd->scale_h;
   bVar1 = sd->alpha;
@@ -1337,8 +1347,7 @@ void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
       u[iVar11] = (int)(((fVar15 * (float)uVar7) / fVar18) * 16.0);
       uVar13 = (ulong)(iVar11 + 1);
     } while (fVar15 < fVar18);
-  }
-  else {
+  } else {
     sVar9 = sd->g_GsTex0;
   }
   if (((uint)((ulong)sVar9 >> 0x14) & 0x3f) == 0x14) {
@@ -1364,8 +1373,7 @@ void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
     pQVar5[ndpkt + 3].ul64[1] = 6;
     pQVar5[ndpkt + 4].ul64[1] = 6;
     pQVar5[ndpkt + 4].ul64[0] = unaff_s3;
-  }
-  else {
+  } else {
     pQVar5[ndpkt + 3].ul64[1] = 6;
     pQVar5[ndpkt + 3].ul64[0] = (ulong)sVar9;
     pQVar5[ndpkt + 4].ul64[1] = 0x7f;
@@ -1378,8 +1386,7 @@ void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
   pQVar4->ul64[0] = 0x161;
   if (atype == 0) {
     uVar6 = 0x8000000044;
-  }
-  else {
+  } else {
     uVar6 = (ulong)bVar1 << 0x20 | 100;
   }
   ndpkt = iVar11 + 6;
@@ -1404,8 +1411,7 @@ void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
       pQVar5->ui32[2] = 0x80;
       if (atype == 0) {
         pQVar5->ui32[3] = (uint)bVar1;
-      }
-      else {
+      } else {
         pQVar5->ui32[3] = 0x80;
       }
       pQVar5 = pbuf;
@@ -1447,38 +1453,38 @@ void SetTexDirectS(int pri, SPRITE_DATA *sd, int atype) {
 }
 
 void SetTexDirectS2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, int type) {
-	int n;
-	int tw[2];
-	int th[2];
-	float mx;
-	float my;
-	u_int mz;
-	float mscw;
-	float msch;
-	float mszw;
-	float mszh;
-	int mclu;
-	int mclv;
-	u_int r;
-	u_int g;
-	u_int b;
-	u_int a;
-	u_long tex1;
-	u_long alpha;
-	u_long zbuf;
-	u_long test;
-	u_long clmp;
-	u_long prim;
-	sceGsTex0 Load;
-	sceGsTex0 Change;
-	float div;
-	float px;
-	float py;
-	float pw;
-	float ph;
-	float xx[2];
-	float yy[2];
-	
+  int n;
+  int tw[2];
+  int th[2];
+  float mx;
+  float my;
+  u_int mz;
+  float mscw;
+  float msch;
+  float mszw;
+  float mszh;
+  int mclu;
+  int mclv;
+  u_int r;
+  u_int g;
+  u_int b;
+  u_int a;
+  u_long tex1;
+  u_long alpha;
+  u_long zbuf;
+  u_long test;
+  u_long clmp;
+  u_long prim;
+  sceGsTex0 Load;
+  sceGsTex0 Change;
+  float div;
+  float px;
+  float py;
+  float pw;
+  float ph;
+  float xx[2];
+  float yy[2];
+
   byte bVar1;
   byte bVar2;
   byte bVar3;
@@ -1505,17 +1511,17 @@ void SetTexDirectS2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, int type) {
   float fVar22;
   float fVar23;
   float fVar24;
-  int tw [2];
-  int th [2];
-  float xx [2];
-  float yy [2];
+  int tw[2];
+  int th[2];
+  float xx[2];
+  float yy[2];
   uint r;
   uint g;
   uint b;
   uint a;
   ulong clmp;
   ulong prim;
-  
+
   fVar23 = 1.0;
   if (g_bInterlace != '\0') {
     fVar23 = 2.0;
@@ -1546,8 +1552,7 @@ void SetTexDirectS2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, int type) {
     }
     tw[1] = uVar8 * 0x10 - th[0];
     tw[0] = th[0];
-  }
-  else {
+  } else {
     tw[1] = uVar8 >> 0x10;
     tw[0] = uVar8 & 0xffff;
   }
@@ -1558,8 +1563,7 @@ void SetTexDirectS2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, int type) {
       uVar8 = 0x3ff;
     }
     th[1] = uVar8 * 0x10 - th[0];
-  }
-  else {
+  } else {
     th[0] = uVar6 & 0xffff;
   }
   sVar15 = sd->g_GsTex0;
@@ -1588,8 +1592,7 @@ void SetTexDirectS2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, int type) {
     pQVar13[ndpkt + 3].ul64[1] = 6;
     pQVar13[ndpkt + 4].ul64[1] = 6;
     pQVar13[ndpkt + 4].ul64[0] = unaff_s2;
-  }
-  else {
+  } else {
     pQVar13[ndpkt + 3].ul64[1] = 6;
     pQVar13[ndpkt + 3].ul64[0] = (ulong)sVar15;
     pQVar13[ndpkt + 4].ul64[1] = 0x7f;
@@ -1640,37 +1643,37 @@ void SetTexDirectS2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, int type) {
 }
 
 void SetTexDirect2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, sceVu0FVECTOR *v) {
-	int tw[2];
-	int th[2];
-	float mx;
-	float my;
-	int mz;
-	float mscw;
-	float msch;
-	float mszw;
-	float mszh;
-	int mclu;
-	int mclv;
-	u_int r;
-	u_int g;
-	u_int b;
-	u_int a;
-	u_long tex1;
-	u_long alpha;
-	u_long zbuf;
-	u_long test;
-	u_long clmp;
-	u_long prim;
-	sceGsTex0 Load;
-	sceGsTex0 Change;
-	float div;
-	float px;
-	float py;
-	float pw;
-	float ph;
-	float xx[2];
-	float yy[2];
-	
+  int tw[2];
+  int th[2];
+  float mx;
+  float my;
+  int mz;
+  float mscw;
+  float msch;
+  float mszw;
+  float mszh;
+  int mclu;
+  int mclv;
+  u_int r;
+  u_int g;
+  u_int b;
+  u_int a;
+  u_long tex1;
+  u_long alpha;
+  u_long zbuf;
+  u_long test;
+  u_long clmp;
+  u_long prim;
+  sceGsTex0 Load;
+  sceGsTex0 Change;
+  float div;
+  float px;
+  float py;
+  float pw;
+  float ph;
+  float xx[2];
+  float yy[2];
+
   byte bVar1;
   byte bVar2;
   byte bVar3;
@@ -1697,17 +1700,17 @@ void SetTexDirect2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, sceVu0FVECTOR *v) {
   float fVar22;
   float fVar23;
   float fVar24;
-  int tw [2];
-  int th [2];
-  float xx [2];
-  float yy [2];
+  int tw[2];
+  int th[2];
+  float xx[2];
+  float yy[2];
   uint r;
   uint g;
   uint b;
   uint a;
   ulong clmp;
   ulong prim;
-  
+
   fVar23 = 1.0;
   if (g_bInterlace != '\0') {
     fVar23 = 2.0;
@@ -1734,8 +1737,7 @@ void SetTexDirect2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, sceVu0FVECTOR *v) {
       uVar8 = 0x3ff;
     }
     tw[1] = uVar8 * 0x10 + -8;
-  }
-  else {
+  } else {
     tw[1] = uVar8 >> 0x10;
     tw[0] = uVar8 & 0xffff;
   }
@@ -1747,8 +1749,7 @@ void SetTexDirect2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, sceVu0FVECTOR *v) {
       uVar8 = 0x3ff;
     }
     th[1] = uVar8 * 0x10 + -8;
-  }
-  else {
+  } else {
     th[0] = uVar6 & 0xffff;
   }
   sVar15 = sd->g_GsTex0;
@@ -1777,8 +1778,7 @@ void SetTexDirect2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, sceVu0FVECTOR *v) {
     pQVar13[ndpkt + 3].ul64[1] = 6;
     pQVar13[ndpkt + 4].ul64[1] = 6;
     pQVar13[ndpkt + 4].ul64[0] = unaff_s2;
-  }
-  else {
+  } else {
     pQVar13[ndpkt + 3].ul64[1] = 6;
     pQVar13[ndpkt + 3].ul64[0] = (ulong)sVar15;
     pQVar13[ndpkt + 4].ul64[1] = 0x7f;
@@ -1829,34 +1829,34 @@ void SetTexDirect2(int pri, SPRITE_DATA *sd, DRAW_ENV *de, sceVu0FVECTOR *v) {
 }
 
 void SetTexDirect(SPRITE_DATA *sd, int atype) {
-	int i;
-	float xx[4];
-	float yy[4];
-	unsigned int tw;
-	unsigned int th;
-	float ss;
-	float cc;
-	float div;
-	int mz;
-	float mx;
-	float my;
-	float mscw;
-	float msch;
-	float mszw;
-	float mszh;
-	float mang;
-	unsigned int mrc;
-	unsigned char malp;
-	sceGsTex0 Load;
-	sceGsTex0 Change;
-	u_int r;
-	u_int g;
-	u_int b;
-	float px;
-	float py;
-	float pw;
-	float ph;
-	
+  int i;
+  float xx[4];
+  float yy[4];
+  unsigned int tw;
+  unsigned int th;
+  float ss;
+  float cc;
+  float div;
+  int mz;
+  float mx;
+  float my;
+  float mscw;
+  float msch;
+  float mszw;
+  float mszh;
+  float mang;
+  unsigned int mrc;
+  unsigned char malp;
+  sceGsTex0 Load;
+  sceGsTex0 Change;
+  u_int r;
+  u_int g;
+  u_int b;
+  float px;
+  float py;
+  float pw;
+  float ph;
+
   byte bVar1;
   uint uVar2;
   float *pfVar3;
@@ -1888,12 +1888,12 @@ void SetTexDirect(SPRITE_DATA *sd, int atype) {
   float fVar27;
   float fVar28;
   float fVar29;
-  float xx [4];
-  float yy [4];
+  float xx[4];
+  float yy[4];
   uint r;
   uint g;
   uint b;
-  
+
   pfVar3 = xx;
   fVar29 = 1.0;
   bVar1 = sd->alpha;
@@ -1927,7 +1927,7 @@ void SetTexDirect(SPRITE_DATA *sd, int atype) {
     yy[0] = 0.0;
     xx[1] = 0.0;
     xx[2] = fVar22;
-LAB_0011dd50:
+  LAB_0011dd50:
     yy[2] = 0.0;
     yy[0] = 0.0;
     xx[1] = 0.0;
@@ -1936,12 +1936,11 @@ LAB_0011dd50:
     yy[1] = fVar26 / fVar29;
     xx[2] = fVar22;
     xx[3] = fVar22;
-  }
-  else {
+  } else {
     fVar27 = (sd->angle * DAT_0035517c) / 180.0;
     fVar18 = SgSinf(fVar27);
     fVar27 = SgCosf(fVar27);
-    switch(uVar15) {
+    switch (uVar15) {
     case 0:
       xx[3] = fVar22;
       xx[0] = 0.0;
@@ -2060,8 +2059,7 @@ LAB_0011dd50:
     pQVar12[ndpkt + 3].ul64[1] = 6;
     pQVar12[ndpkt + 4].ul64[1] = 6;
     pQVar12[ndpkt + 4].ul64[0] = unaff_s5;
-  }
-  else {
+  } else {
     pQVar12[ndpkt + 3].ul64[1] = 6;
     pQVar12[ndpkt + 3].ul64[0] = (ulong)sVar10;
     pQVar12[ndpkt + 4].ul64[1] = 0x7f;
@@ -2074,8 +2072,7 @@ LAB_0011dd50:
   pQVar4->ul64[0] = 0x161;
   if (atype == 0) {
     uVar7 = 0x44;
-  }
-  else {
+  } else {
     uVar7 = (ulong)bVar1 << 0x20 | 100;
   }
   ndpkt = iVar8 + 6;
@@ -2139,10 +2136,11 @@ LAB_0011dd50:
   return;
 }
 
-void SetScreenDSlide(int addr, int type, int alpha, float ang, float scl, int z) {
-	SPRITE_DATA sd;
-	DRAW_ENV de;
-	
+void SetScreenDSlide(int addr, int type, int alpha, float ang, float scl,
+                     int z) {
+  SPRITE_DATA sd;
+  DRAW_ENV de;
+
   undefined8 *puVar1;
   SPRITE_DATA *pSVar2;
   undefined8 uVar3;
@@ -2150,7 +2148,7 @@ void SetScreenDSlide(int addr, int type, int alpha, float ang, float scl, int z)
   undefined8 uVar5;
   SPRITE_DATA sd;
   DRAW_ENV de;
-  
+
   pSVar2 = &sd;
   puVar1 = &DAT_0034a5b0;
   do {
@@ -2170,7 +2168,7 @@ void SetScreenDSlide(int addr, int type, int alpha, float ang, float scl, int z)
   de.test = DAT_0034a628;
   de.clamp = DAT_0034a630;
   de.prim = DAT_0034a638;
-  switch(type) {
+  switch (type) {
   case 0:
     sd.pos_x = DAT_00355180;
     sd.pos_y = DAT_00355184;
@@ -2196,26 +2194,27 @@ void SetScreenDSlide(int addr, int type, int alpha, float ang, float scl, int z)
     sd.pos_x = DAT_00355198;
   }
   sd.rot_center = 1;
-  sd.g_GsTex0 = (sceGsTex0)((ulong)sd.g_GsTex0 & 0xffffffffffffc000 | (long)addr & 0x3fffU);
+  sd.g_GsTex0 = (sceGsTex0)((ulong)sd.g_GsTex0 & 0xffffffffffffc000 |
+                            (long)addr & 0x3fffU);
   sd.alpha = (uchar)alpha;
   sd.pos_z = z;
   sd.scale_w = scl;
   sd.scale_h = scl;
   sd.angle = ang;
-  SetTexDirectS2(0,&sd,&de,0);
+  SetTexDirectS2(0, &sd, &de, 0);
   return;
 }
 
 void SetScreenZ(int addr) {
-	SPRITE_DATA sd;
-	
+  SPRITE_DATA sd;
+
   undefined8 *puVar1;
   SPRITE_DATA *pSVar2;
   undefined8 uVar3;
   undefined8 uVar4;
   undefined8 uVar5;
   SPRITE_DATA sd;
-  
+
   pSVar2 = &sd;
   puVar1 = &DAT_0034a658;
   do {
@@ -2229,30 +2228,31 @@ void SetScreenZ(int addr) {
     puVar1 = puVar1 + 4;
     pSVar2 = (SPRITE_DATA *)((int)pSVar2 + 0x20);
   } while (puVar1 != &DAT_0034a6b8);
-  sd.g_GsTex0 = (sceGsTex0)((ulong)sd.g_GsTex0 & 0xffffffffffffc000 | (long)addr & 0x3fffU);
+  sd.g_GsTex0 = (sceGsTex0)((ulong)sd.g_GsTex0 & 0xffffffffffffc000 |
+                            (long)addr & 0x3fffU);
   sd.pos_z = 0xfffffef;
-  SetTexDirectS(0x10,&sd,1);
+  SetTexDirectS(0x10, &sd, 1);
   return;
 }
 
 void CaptureScreen(u_int addr) {
-  LocalCopyLtoB2(1,(int)(((sys_wrk.count & 1) * 0x23 << 0x26) >> 0x20));
+  LocalCopyLtoB2(1, (int)(((sys_wrk.count & 1) * 0x23 << 0x26) >> 0x20));
   return;
 }
 
 void DrawScreen(u_int pri, u_int addr, u_char r, u_char g, u_char b, u_char a) {
-	DISP_SPRT ds;
-	SPRT_DAT sd;
-	
   DISP_SPRT ds;
   SPRT_DAT sd;
-  
+
+  DISP_SPRT ds;
+  SPRT_DAT sd;
+
   sd.tex0 = DAT_0034a6b8;
   sd._8_8_ = DAT_0034a6c0;
   sd._16_8_ = DAT_0034a6c8;
   sd._24_8_ = DAT_0034a6d0;
-  LocalCopyBtoL(1,addr);
-  CopySprDToSpr(&ds,&sd);
+  LocalCopyBtoL(1, addr);
+  CopySprDToSpr(&ds, &sd);
   ds.tex0 = (long)(int)addr & 0xffffffffU | 0x2000000228028000;
   ds.z = 0xfffffff - pri;
   ds.tex1 = 0x141;
@@ -2276,20 +2276,20 @@ void DrawScreen(u_int pri, u_int addr, u_char r, u_char g, u_char b, u_char a) {
 }
 
 void ClearFBuffer() {
-	int i;
-	int x[2];
-	int y[2];
-	int div;
-	
+  int i;
+  int x[2];
+  int y[2];
+  int div;
+
   Q_WORDDATA *pQVar1;
   Q_WORDDATA *pQVar2;
   uint uVar3;
   Q_WORDDATA *pQVar4;
   int iVar5;
   int iVar6;
-  int x [2];
-  int y [2];
-  
+  int x[2];
+  int y[2];
+
   uVar3 = 1;
   if (g_bInterlace != '\0') {
     uVar3 = 2;
@@ -2340,20 +2340,20 @@ void ClearFBuffer() {
 }
 
 void ClearZBuffer() {
-	int i;
-	int x[2];
-	int y[2];
-	int div;
-	
+  int i;
+  int x[2];
+  int y[2];
+  int div;
+
   Q_WORDDATA *pQVar1;
   Q_WORDDATA *pQVar2;
   uint uVar3;
   Q_WORDDATA *pQVar4;
   int iVar5;
   int iVar6;
-  int x [2];
-  int y [2];
-  
+  int x[2];
+  int y[2];
+
   uVar3 = 1;
   if (g_bInterlace != '\0') {
     uVar3 = 2;
@@ -2408,11 +2408,9 @@ void CamSave() {
   return;
 }
 
-int CamChangeCheck() {
-  return (int)(old_cam_no != plyr_wrk.dop.dov[0]._0_2_);
-}
+int CamChangeCheck() { return (int)(old_cam_no != plyr_wrk.dop.dov[0]._0_2_); }
 
-void* GetEmptyBuffer(int no) {
+void *GetEmptyBuffer(int no) {
   if (no == 1) {
     return buf2;
   }
@@ -2423,58 +2421,58 @@ void* GetEmptyBuffer(int no) {
 }
 
 void CheckPointDepth(PP_JUDGE *ppj) {
-	int i;
-	int xx[32];
-	int yy[32];
-	int clip[32];
-	sceVu0FMATRIX wlm;
-	sceVu0FMATRIX slm;
-	sceVu0IVECTOR ivec[32];
-	sceVu0FVECTOR bpos[32];
-	sceVu0FVECTOR fzero;
-	sceVu0FVECTOR ofst_pos[5];
-	float fr_f;
-	static sceGsStoreImage gs_simage1;
-	Q_WORDDATA q;
-	int n1;
-	int n2;
-	u_int ui;
-	
+  int i;
+  int xx[32];
+  int yy[32];
+  int clip[32];
+  sceVu0FMATRIX wlm;
+  sceVu0FMATRIX slm;
+  sceVu0IVECTOR ivec[32];
+  sceVu0FVECTOR bpos[32];
+  sceVu0FVECTOR fzero;
+  sceVu0FVECTOR ofst_pos[5];
+  float fr_f;
+  static sceGsStoreImage gs_simage1;
+  Q_WORDDATA q;
+  int n1;
+  int n2;
+  u_int ui;
+
   undefined8 *puVar1;
-  float (*pafVar2) [4];
+  float(*pafVar2)[4];
   undefined8 *puVar3;
   int iVar4;
-  float (*pafVar5) [4];
+  float(*pafVar5)[4];
   int iVar6;
   uchar *puVar7;
   undefined8 uVar8;
   undefined8 uVar9;
   undefined8 uVar10;
   int *piVar11;
-  int (*paiVar12) [4];
+  int(*paiVar12)[4];
   int iVar13;
   float fVar14;
-  int xx [32];
-  int yy [32];
-  int clip [32];
-  float wlm [4] [4];
-  float slm [4] [4];
-  int ivec [32] [4];
-  float bpos [32] [4];
-  float fzero [4];
-  float ofst_pos [5] [4];
+  int xx[32];
+  int yy[32];
+  int clip[32];
+  float wlm[4][4];
+  float slm[4][4];
+  int ivec[32][4];
+  float bpos[32][4];
+  float fzero[4];
+  float ofst_pos[5][4];
   Q_WORDDATA q;
   PP_JUDGE *local_c0;
   float *local_bc;
-  int (*local_b8) [4];
+  int(*local_b8)[4];
   uchar *local_b4;
   Matrix4x4 *local_b0;
   int *local_ac;
   uint local_a8;
-  
+
   local_bc = fzero;
   local_c0 = ppj;
-  memset(local_bc,0,0x10);
+  memset(local_bc, 0, 0x10);
   fzero[3] = 1.0;
   local_a8 = (uint)local_c0->num;
   puVar1 = &DAT_0034a6e0;
@@ -2508,28 +2506,26 @@ void CheckPointDepth(PP_JUDGE *ppj) {
       wlm[2][2] = 25.0;
       wlm[1][1] = 25.0;
       piVar11 = clip + iVar13;
-      sceVu0TransMatrix((Matrix4x4 *)wlm,(Matrix4x4 *)wlm,(Vector4 *)local_c0->p[iVar13]);
-      sceVu0MulMatrix(local_b0,&SgWSMtx,(Matrix4x4 *)wlm);
-      sceVu0RotTransPers(paiVar12,local_b0,local_bc,0);
+      sceVu0TransMatrix((Matrix4x4 *)wlm, (Matrix4x4 *)wlm,
+                        (Vector4 *)local_c0->p[iVar13]);
+      sceVu0MulMatrix(local_b0, &SgWSMtx, (Matrix4x4 *)wlm);
+      sceVu0RotTransPers(paiVar12, local_b0, local_bc, 0);
       *piVar11 = 0;
       if ((*paiVar12)[0] - 0x6c00U < 0x2801) {
         iVar4 = (*paiVar12)[1];
-      }
-      else {
+      } else {
         *piVar11 = 1;
         iVar4 = (*paiVar12)[1];
       }
       if (iVar4 - 0x7900U < 0xe01) {
         iVar4 = (*paiVar12)[2];
-      }
-      else {
+      } else {
         *piVar11 = *piVar11 + 1;
         iVar4 = (*paiVar12)[2];
       }
       if (iVar4 - 0xffU < 0xffff01) {
         iVar4 = (*paiVar12)[0];
-      }
-      else {
+      } else {
         *piVar11 = *piVar11 + 1;
         iVar4 = (*paiVar12)[0];
       }
@@ -2554,15 +2550,16 @@ void CheckPointDepth(PP_JUDGE *ppj) {
         if (-1 < iVar4) {
           iVar6 = iVar4;
         }
-        sceGsSetDefStoreImage
-                  (0x359c30,0x1180,10,0x30,((iVar6 >> 2) << 0x12) >> 0x10,
-                   *(undefined2 *)(local_ac + iVar13),4,1);
+        sceGsSetDefStoreImage(0x359c30, 0x1180, 10, 0x30,
+                              ((iVar6 >> 2) << 0x12) >> 0x10,
+                              *(undefined2 *)(local_ac + iVar13), 4, 1);
         CheckDMATrans();
-        sceGsSyncPath(0,0);
+        sceGsSyncPath(0, 0);
         FlushCache(0);
-        sceGsExecStoreImage(0x359c30,&q);
-        sceGsSyncPath(0,0);
-        if ((uint)((*paiVar12)[2] >> 4) <= (q.ui32[iVar4 + (iVar6 >> 2) * -4] & 0xffffff)) {
+        sceGsExecStoreImage(0x359c30, &q);
+        sceGsSyncPath(0, 0);
+        if ((uint)((*paiVar12)[2] >> 4) <=
+            (q.ui32[iVar4 + (iVar6 >> 2) * -4] & 0xffffff)) {
           *piVar11 = *piVar11 + 1;
         }
       }
@@ -2576,62 +2573,61 @@ void CheckPointDepth(PP_JUDGE *ppj) {
 }
 
 void GetCamI2DPos(float *pos, float *tx, float *ty) {
-	sceVu0FMATRIX wlm;
-	sceVu0FMATRIX slm;
-	sceVu0FVECTOR vt;
-	sceVu0FVECTOR vtw;
-	float pl;
-	
+  sceVu0FMATRIX wlm;
+  sceVu0FMATRIX slm;
+  sceVu0FVECTOR vt;
+  sceVu0FVECTOR vtw;
+  float pl;
+
   float zero;
   Matrix4x4 wlm;
   Matrix4x4 slm;
   Vector4 vt;
   Vector4 vtw;
-  
-  memset(&vt,0,0x10);
+
+  memset(&vt, 0, 0x10);
   zero = 0.0;
   vt.w = 1.0;
   sceVu0UnitMatrix(&wlm);
   wlm.matrix[0].x = 25.0;
   wlm.matrix[2].z = 25.0;
   wlm.matrix[1].y = 25.0;
-  sceVu0TransMatrix(&wlm,&wlm,(Vector4 *)pos);
-  sceVu0MulMatrix(&slm,&SgWSMtx,&wlm);
-  sceVu0ApplyMatrix(&vtw,&slm,&vt);
-  sceVu0ScaleVector(1.0 / vtw.w,&vtw,&vtw);
+  sceVu0TransMatrix(&wlm, &wlm, (Vector4 *)pos);
+  sceVu0MulMatrix(&slm, &SgWSMtx, &wlm);
+  sceVu0ApplyMatrix(&vtw, &slm, &vt);
+  sceVu0ScaleVector(1.0 / vtw.w, &vtw, &vtw);
   *tx = (vtw.x - 2048.0) + 320.0;
   *ty = (vtw.y - 2048.0) + 112.0 + zero;
   return;
 }
 
 void Get2PosRot(float *v1, float *v2, float *x, float *y) {
-	float l;
-	float fx;
-	float fy;
-	float fz;
-	
+  float l;
+  float fx;
+  float fy;
+  float fz;
+
   bool bVar1;
   float fVar2;
   float y_00;
   float fVar3;
   float y_01;
   float fVar4;
-  
+
   fVar3 = v2[2] - v1[2];
   fVar4 = v2[1];
   y_01 = *v2 - *v1;
   fVar2 = v1[1];
   y_00 = SgSqrtf(y_01 * y_01 + fVar3 * fVar3);
-  fVar3 = SgAtan2f(y_01,fVar3);
+  fVar3 = SgAtan2f(y_01, fVar3);
   *y = fVar3;
-  fVar2 = SgAtan2f(y_00,fVar4 - fVar2);
+  fVar2 = SgAtan2f(y_00, fVar4 - fVar2);
   fVar2 = fVar2 + DAT_003551a0;
   bVar1 = DAT_003551a4 < fVar2;
   *x = fVar2;
   if (bVar1) {
     fVar2 = fVar2 - DAT_003551a8;
-  }
-  else {
+  } else {
     if (DAT_003551ac <= fVar2) {
       *x = fVar2;
       goto LAB_0011f20c;
@@ -2643,8 +2639,7 @@ LAB_0011f20c:
   fVar2 = *y;
   if (DAT_003551b4 < fVar2) {
     fVar2 = fVar2 - DAT_003551b8;
-  }
-  else {
+  } else {
     if (DAT_003551bc <= fVar2) {
       *y = fVar2;
       return;
@@ -2656,27 +2651,26 @@ LAB_0011f20c:
 }
 
 void Get2PosRot2(float *v1, float *v2, float *x, float *z) {
-	float fy;
-	float fz;
-	
+  float fy;
+  float fz;
+
   bool bVar1;
   float fVar2;
   float fVar3;
   float x_00;
   float fVar4;
-  
+
   fVar4 = v2[2];
   x_00 = v2[1] - v1[1];
   fVar2 = v1[2];
-  fVar3 = SgAtan2f(*v2 - *v1,x_00);
+  fVar3 = SgAtan2f(*v2 - *v1, x_00);
   *z = fVar3;
-  fVar2 = SgAtan2f(fVar4 - fVar2,x_00);
+  fVar2 = SgAtan2f(fVar4 - fVar2, x_00);
   bVar1 = DAT_003551c4 < fVar2;
   *x = fVar2;
   if (bVar1) {
     fVar2 = fVar2 - DAT_003551c8;
-  }
-  else {
+  } else {
     if (DAT_003551cc <= fVar2) {
       *x = fVar2;
       goto LAB_0011f310;
@@ -2688,8 +2682,7 @@ LAB_0011f310:
   fVar2 = *z;
   if (DAT_003551d4 < fVar2) {
     fVar2 = fVar2 - DAT_003551d8;
-  }
-  else {
+  } else {
     if (DAT_003551dc <= fVar2) {
       *z = fVar2;
       return;
@@ -2701,34 +2694,34 @@ LAB_0011f310:
 }
 
 void GetTrgtRotType2(float *p0, float *p1, float *rot, int id) {
-	sceVu0FVECTOR dist;
-	
+  sceVu0FVECTOR dist;
+
   float fVar1;
-  float dist [4];
-  
+  float dist[4];
+
   *rot = 0.0;
   rot[1] = 0.0;
   rot[2] = 0.0;
   rot[3] = 0.0;
-  sceVu0SubVector(dist,p1,p0);
+  sceVu0SubVector(dist, p1, p0);
   if ((id & 1U) != 0) {
-    dist[3] = GetDistV(p0,p1);
-    fVar1 = SgAtan2f(dist[1],dist[3]);
+    dist[3] = GetDistV(p0, p1);
+    fVar1 = SgAtan2f(dist[1], dist[3]);
     *rot = fVar1;
   }
   if ((id & 2U) != 0) {
-    fVar1 = SgAtan2f(dist[0],dist[2]);
+    fVar1 = SgAtan2f(dist[0], dist[2]);
     rot[1] = fVar1;
   }
   return;
 }
 
 void CalcSimEquations(double *sq[3], float *x, float *y) {
-	double d;
-	int i;
-	int j;
-	int k;
-	
+  double d;
+  int i;
+  int j;
+  int k;
+
   double dVar1;
   double dVar2;
   int iVar3;
@@ -2736,7 +2729,7 @@ void CalcSimEquations(double *sq[3], float *x, float *y) {
   int iVar5;
   int iVar6;
   int iVar7;
-  
+
   iVar5 = 1;
   iVar7 = 0;
   do {
@@ -2748,8 +2741,8 @@ void CalcSimEquations(double *sq[3], float *x, float *y) {
         dVar1 = (double)sq[iVar5][iVar7];
         iVar6 = iVar5 + 1;
         for (iVar3 = iVar4; iVar3 < 3; iVar3 = iVar3 + 1) {
-          sq[iVar5][iVar3] =
-               (long)((double)sq[iVar5][iVar3] - (double)sq[iVar7][iVar3] * (dVar1 / dVar2));
+          sq[iVar5][iVar3] = (long)((double)sq[iVar5][iVar3] -
+                                    (double)sq[iVar7][iVar3] * (dVar1 / dVar2));
         }
         iVar5 = iVar6;
       } while (iVar6 < 2);
@@ -2775,22 +2768,23 @@ void CalcSimEquations(double *sq[3], float *x, float *y) {
 }
 
 float Get2PLength(float *v1, float *v2) {
-	float xx;
-	float yy;
-	float zz;
-	
+  float xx;
+  float yy;
+  float zz;
+
   float fVar1;
-  
-  fVar1 = SgSqrtf((*v2 - *v1) * (*v2 - *v1) + (v2[1] - v1[1]) * (v2[1] - v1[1]) +
-                  (v2[2] - v1[2]) * (v2[2] - v1[2]));
+
+  fVar1 =
+      SgSqrtf((*v2 - *v1) * (*v2 - *v1) + (v2[1] - v1[1]) * (v2[1] - v1[1]) +
+              (v2[2] - v1[2]) * (v2[2] - v1[2]));
   return fVar1;
 }
 
 int log_2(float num) {
-	int n;
-	
+  int n;
+
   int iVar1;
-  
+
   iVar1 = 0;
   if (1.0 < num * 0.5) {
     iVar1 = log_2(num * 0.5);
@@ -2799,41 +2793,39 @@ int log_2(float num) {
 }
 
 void LocalCopyLtoB_Sub(int no, int type, int addr) {
-	u_long128 *pbuf;
-	static sceGsStoreImage gs_simage1;
-	static sceGsStoreImage gs_simage2;
-	
+  u_long128 *pbuf;
+  static sceGsStoreImage gs_simage1;
+  static sceGsStoreImage gs_simage2;
+
   uint16 *puVar1;
-  
+
   puVar1 = buf;
   if (no != 0) {
     puVar1 = buf2;
   }
-  sceGsSetDefStoreImage(0x359ca0,(short)addr,10,0,0,0,0x280,200);
-  sceGsSetDefStoreImage(0x359d10,(short)addr,10,0,0,200,0x280,0x18);
+  sceGsSetDefStoreImage(0x359ca0, (short)addr, 10, 0, 0, 0, 0x280, 200);
+  sceGsSetDefStoreImage(0x359d10, (short)addr, 10, 0, 0, 200, 0x280, 0x18);
   CheckDMATrans();
-  sceGsSyncPath(0,0);
+  sceGsSyncPath(0, 0);
   FlushCache(0);
-  sceGsExecStoreImage(0x359ca0,puVar1);
-  sceGsExecStoreImage(0x359d10,puVar1 + 32000);
+  sceGsExecStoreImage(0x359ca0, puVar1);
+  sceGsExecStoreImage(0x359d10, puVar1 + 32000);
   if (type == 0) {
     return;
   }
-  sceGsSyncPath(0,0);
+  sceGsSyncPath(0, 0);
   return;
 }
 
-void LocalCopyLtoB_Sub2(int no, int type, int addr) {
-  return;
-}
+void LocalCopyLtoB_Sub2(int no, int type, int addr) { return; }
 
 void LocalCopyBtoL_Sub(int no, int type, int addr) {
-	u_long128 *bbuf;
-	int nloop;
-	int bline;
-	int rline;
-	int oline;
-	
+  u_long128 *bbuf;
+  int nloop;
+  int bline;
+  int rline;
+  int oline;
+
   uint uVar1;
   Q_WORDDATA *pQVar2;
   Q_WORDDATA *pQVar3;
@@ -2842,7 +2834,7 @@ void LocalCopyBtoL_Sub(int no, int type, int addr) {
   int iVar6;
   long lVar7;
   uint16 *puVar8;
-  
+
   puVar8 = buf;
   if (no != 0) {
     puVar8 = buf2;
@@ -2900,35 +2892,36 @@ void LocalCopyBtoL_Sub(int no, int type, int addr) {
 }
 
 int GetYOffset() {
-  return 0x7908 - (uint)*(ushort *)&(pdrawenv->xyoffset1).field_0x4;
+  return 0x7908 - (uint) * (ushort *)&(pdrawenv->xyoffset1).field_0x4;
 }
 
 float GetYOffsetf() {
-  return (float)(0x7908 - (uint)*(ushort *)&(pdrawenv->xyoffset1).field_0x4) * 0.0625;
+  return (float)(0x7908 - (uint) * (ushort *)&(pdrawenv->xyoffset1).field_0x4) *
+         0.0625;
 }
 
 void LocalCopyLtoB2(int no, int addr) {
-  LocalCopyLtoB_Sub(no,1,addr);
+  LocalCopyLtoB_Sub(no, 1, addr);
   return;
 }
 
 void LocalCopyLtoB(int no, int addr) {
-  LocalCopyLtoB_Sub2(no,1,addr);
+  LocalCopyLtoB_Sub2(no, 1, addr);
   return;
 }
 
 void LocalCopyBtoL(int no, int addr) {
-  LocalCopyBtoL_Sub(no,1,addr);
+  LocalCopyBtoL_Sub(no, 1, addr);
   return;
 }
 
 void LocalCopyLtoB_NB(int no, int addr) {
-  LocalCopyLtoB_Sub(no,0,addr);
+  LocalCopyLtoB_Sub(no, 0, addr);
   return;
 }
 
 void LocalCopyBtoL_NB(int no, int addr) {
-  LocalCopyBtoL_Sub(no,0,addr);
+  LocalCopyBtoL_Sub(no, 0, addr);
   return;
 }
 
@@ -2939,17 +2932,17 @@ void ClearLocalCopyLtoLCache() {
 }
 
 int LocalCopyLtoLDraw(int addr1, int addr2) {
-	int i;
-	int old_ndpkt;
-	int xyoff;
-	Q_WORDDATA *ppbuf;
-	float *v0;
-	float *v1;
-	float *v0;
-	float *v1;
-	float *v0;
-	float *v1;
-	
+  int i;
+  int old_ndpkt;
+  int xyoff;
+  Q_WORDDATA *ppbuf;
+  float *v0;
+  float *v1;
+  float *v0;
+  float *v1;
+  float *v0;
+  float *v1;
+
   ushort uVar1;
   sceGsFrame sVar2;
   sceGsXyoffset sVar3;
@@ -2961,7 +2954,7 @@ int LocalCopyLtoLDraw(int addr1, int addr2) {
   uint uVar9;
   int iVar10;
   Q_WORDDATA *pQVar11;
-  
+
   uVar1 = *(ushort *)&(pdrawenv->xyoffset1).field_0x4;
   Reserve2DPacket(0x1000);
   pQVar5 = Get2DPacketBufferAddress();
@@ -2987,7 +2980,8 @@ int LocalCopyLtoLDraw(int addr1, int addr2) {
   *(undefined8 *)((int)pQVar5 + 0x78) = 0x14;
   pQVar5[8].ul64[0] = (long)addr1 | 0xe28028000;
   *(long *)(pQVar5 + 6) =
-       (long)(int)(((uint)((ulong)sVar6 >> 0x18) & 0xf) << 0x18 | SUB84(sVar6,0) & 0x1ff);
+      (long)(int)(((uint)((ulong)sVar6 >> 0x18) & 0xf) << 0x18 |
+                  SUB84(sVar6, 0) & 0x1ff);
   uVar9 = 0x6c00;
   *(undefined8 *)((int)pQVar5 + 0x88) = 6;
   pQVar5 = pQVar5 + 9;
@@ -3010,34 +3004,34 @@ int LocalCopyLtoLDraw(int addr1, int addr2) {
     pQVar5 = pQVar11 + 5;
   } while (iVar10 < 0x280);
   pQVar11[5].ul64[0] = 0x1000000000008003;
-                    /* inlined from ../../graphics/graph3d/libsg.h */
-                    /* end of inlined section */
+  /* inlined from ../../graphics/graph3d/libsg.h */
+  /* end of inlined section */
   *(undefined8 *)((int)pQVar11 + 0x58) = 0xe;
   psVar4 = pdrawenv;
   sVar2 = pdrawenv->frame1;
-                    /* inlined from ../../graphics/graph3d/libsg.h */
+  /* inlined from ../../graphics/graph3d/libsg.h */
   uVar7 = *(undefined4 *)&pdrawenv->frame1addr;
   uVar8 = *(undefined4 *)((int)&pdrawenv->frame1addr + 4);
-  pQVar11[6].ui32[0] = SUB84(sVar2,0);
+  pQVar11[6].ui32[0] = SUB84(sVar2, 0);
   *(int *)((int)pQVar11 + 100) = (int)((ulong)sVar2 >> 0x20);
   *(undefined4 *)((int)pQVar11 + 0x68) = uVar7;
   *(undefined4 *)((int)pQVar11 + 0x6c) = uVar8;
   sVar6 = psVar4->zbuf1;
   uVar7 = *(undefined4 *)&psVar4->zbuf1addr;
   uVar8 = *(undefined4 *)((int)&psVar4->zbuf1addr + 4);
-  pQVar11[7].ui32[0] = SUB84(sVar6,0);
+  pQVar11[7].ui32[0] = SUB84(sVar6, 0);
   *(int *)((int)pQVar11 + 0x74) = (int)((ulong)sVar6 >> 0x20);
   *(undefined4 *)((int)pQVar11 + 0x78) = uVar7;
   *(undefined4 *)((int)pQVar11 + 0x7c) = uVar8;
   sVar3 = psVar4->xyoffset1;
   uVar7 = *(undefined4 *)&psVar4->xyoffset1addr;
   uVar8 = *(undefined4 *)((int)&psVar4->xyoffset1addr + 4);
-  pQVar11[8].ui32[0] = SUB84(sVar3,0);
+  pQVar11[8].ui32[0] = SUB84(sVar3, 0);
   *(int *)((int)pQVar11 + 0x84) = (int)((ulong)sVar3 >> 0x20);
   *(undefined4 *)((int)pQVar11 + 0x88) = uVar7;
   *(undefined4 *)((int)pQVar11 + 0x8c) = uVar8;
   iVar10 = ndpkt;
-                    /* end of inlined section */
+  /* end of inlined section */
   Set2DPacketBufferAddress(pQVar11 + 9);
   uVar9 = (ndpkt - iVar10) - 1;
   pQVar5 = pbuf + iVar10;
@@ -3049,13 +3043,13 @@ int LocalCopyLtoLDraw(int addr1, int addr2) {
 }
 
 void LocalCopyLtoL(int addr1, int addr2) {
-	int i;
-	Q_WORDDATA *ppbuf;
-	
+  int i;
+  Q_WORDDATA *ppbuf;
+
   Q_WORDDATA *pQVar1;
   int iVar2;
   Q_WORDDATA *pQVar3;
-  
+
   Reserve2DPacket(0x1000);
   pQVar1 = Get2DPacketBufferAddress();
   pQVar1->ui32[0] = (uint)&DAT_10000002;
@@ -3072,7 +3066,8 @@ void LocalCopyLtoL(int addr1, int addr2) {
   *(undefined4 *)((int)pQVar1 + 0x38) = 0;
   pQVar1[4].ul64[0] = 0x100000000000801f;
   *(undefined8 *)((int)pQVar1 + 0x48) = 0xe;
-  pQVar1[5].ul64[0] = (long)addr1 | 0xa0000U | (long)addr2 << 0x20 | 0xa000000000000;
+  pQVar1[5].ul64[0] =
+      (long)addr1 | 0xa0000U | (long)addr2 << 0x20 | 0xa000000000000;
   *(undefined8 *)((int)pQVar1 + 0x58) = 0x50;
   iVar2 = 0;
   pQVar1 = pQVar1 + 6;
@@ -3096,39 +3091,39 @@ void LocalCopyLtoL(int addr1, int addr2) {
 }
 
 void LocalCopyZtoBZ() {
-	static sceGsStoreImage gs_simage1;
-	
-  sceGsSetDefStoreImage(0x359d80,0x1180,10,0x31,0,0,0x280,0xe0);
-  sceGsSyncPath(0,0);
+  static sceGsStoreImage gs_simage1;
+
+  sceGsSetDefStoreImage(0x359d80, 0x1180, 10, 0x31, 0, 0, 0x280, 0xe0);
+  sceGsSyncPath(0, 0);
   CheckDMATrans();
   FlushCache(0);
-  sceGsExecStoreImage(0x359d80,bufz);
-  sceGsSyncPath(0,0);
+  sceGsExecStoreImage(0x359d80, bufz);
+  sceGsSyncPath(0, 0);
   return;
 }
 
 void LocalCopyBZtoZ() {
-	static sceGsLoadImage gs_limage1;
-	
-  sceGsSetDefLoadImage(0x359df0,0x1180,10,0x31,0,0,0x280,0xe0);
+  static sceGsLoadImage gs_limage1;
+
+  sceGsSetDefLoadImage(0x359df0, 0x1180, 10, 0x31, 0, 0, 0x280, 0xe0);
   FlushCache(0);
-  sceGsExecLoadImage(0x359df0,bufz);
-  sceGsSyncPath(0,0);
+  sceGsExecLoadImage(0x359df0, bufz);
+  sceGsSyncPath(0, 0);
   return;
 }
 
 void LocalCopyLtoBD(int addr, void *outbuf) {
-	static sceGsStoreImage gs_simage1;
-	static sceGsStoreImage gs_simage2;
-	
-  sceGsSetDefStoreImage(0x359e50,(short)addr,10,0,0,0,0x280,200);
-  sceGsSetDefStoreImage(0x359ec0,(short)addr,10,0,0,200,0x280,0x18);
+  static sceGsStoreImage gs_simage1;
+  static sceGsStoreImage gs_simage2;
+
+  sceGsSetDefStoreImage(0x359e50, (short)addr, 10, 0, 0, 0, 0x280, 200);
+  sceGsSetDefStoreImage(0x359ec0, (short)addr, 10, 0, 0, 200, 0x280, 0x18);
   CheckDMATrans();
-  sceGsSyncPath(0,0);
+  sceGsSyncPath(0, 0);
   FlushCache(0);
-  sceGsExecStoreImage(0x359e50,outbuf);
-  sceGsExecStoreImage(0x359ec0,(int)outbuf + 0x7d000);
-  sceGsSyncPath(0,0);
+  sceGsExecStoreImage(0x359e50, outbuf);
+  sceGsExecStoreImage(0x359ec0, (int)outbuf + 0x7d000);
+  sceGsSyncPath(0, 0);
   return;
 }
 
@@ -3145,18 +3140,18 @@ void SetVibrate(int type, int time, int pow) {
 void CallVibrate() {
   bool bVar1;
   int iVar2;
-  
+
   iVar2 = vib1_time + -1;
   bVar1 = 0 < vib1_time;
   vib1_time = iVar2;
   if (bVar1) {
-    VibrateRequest1(0,1);
+    VibrateRequest1(0, 1);
   }
   iVar2 = vib2_time + -1;
   bVar1 = 0 < vib2_time;
   vib2_time = iVar2;
   if (bVar1) {
-    VibrateRequest2(0,(short)vib2_pow);
+    VibrateRequest2(0, (short)vib2_pow);
     return;
   }
   return;
@@ -3168,18 +3163,18 @@ void InitTecmotLogo() {
 }
 
 int SetTecmoLogo() {
-	SPRT_DAT logotex[1];
-	DISP_SPRT ds;
-	static int cnt;
-	u_char alp;
-	int sec1;
-	int sec3;
-	
+  SPRT_DAT logotex[1];
+  DISP_SPRT ds;
+  static int cnt;
+  u_char alp;
+  int sec1;
+  int sec3;
+
   int iVar1;
   byte unaff_s1_lo;
-  SPRT_DAT logotex [1];
+  SPRT_DAT logotex[1];
   DISP_SPRT ds;
-  
+
   logotex[0].tex0 = DAT_0034a730;
   logotex[0]._8_8_ = DAT_0034a738;
   logotex[0]._16_8_ = DAT_0034a740;
@@ -3187,25 +3182,25 @@ int SetTecmoLogo() {
   if (tecmo_logo_flow == 2) {
     ds.alpha = 0x80;
     cnt_325 = cnt_325 + 1;
-    if (cnt_325 < 0x3c) goto LAB_00120214;
+    if (cnt_325 < 0x3c)
+      goto LAB_00120214;
     tecmo_logo_flow = 3;
     ds.alpha = 0x80;
-  }
-  else {
+  } else {
     ds.alpha = unaff_s1_lo;
     if (tecmo_logo_flow < 3) {
       if (tecmo_logo_flow == 0) {
         cnt_325 = 0;
         tecmo_logo_flow = 1;
-      }
-      else if (tecmo_logo_flow != 1) goto LAB_00120214;
+      } else if (tecmo_logo_flow != 1)
+        goto LAB_00120214;
       iVar1 = cnt_325 << 7;
       cnt_325 = cnt_325 + 1;
       ds.alpha = (byte)(iVar1 / 0x5a);
-      if (cnt_325 < 0x5a) goto LAB_00120214;
+      if (cnt_325 < 0x5a)
+        goto LAB_00120214;
       tecmo_logo_flow = tecmo_logo_flow + 1;
-    }
-    else {
+    } else {
       if (tecmo_logo_flow != 3) {
         if (tecmo_logo_flow == 0xff) {
           return 1;
@@ -3215,14 +3210,15 @@ int SetTecmoLogo() {
       iVar1 = 0x5a - cnt_325;
       cnt_325 = cnt_325 + 1;
       ds.alpha = (byte)((iVar1 * 0x80) / 0x5a);
-      if (cnt_325 < 0x5a) goto LAB_00120214;
+      if (cnt_325 < 0x5a)
+        goto LAB_00120214;
       tecmo_logo_flow = 0xff;
     }
   }
   cnt_325 = 0;
 LAB_00120214:
-  SetSprFile3(0x1e90000,0);
-  CopySprDToSpr(&ds,logotex);
+  SetSprFile3(0x1e90000, 0);
+  CopySprDToSpr(&ds, logotex);
   ds.x = (float)logotex[0].x;
   ds.y = (float)logotex[0].y;
   ds.z = 0xfffffff - logotex[0].pri;
@@ -3245,86 +3241,86 @@ void set_vect(float *v, float x, float y, float z, float w) {
 }
 
 void Vu0SubOuterProduct(float *v0, float *v1, float *v2, float *v3) {
-	u_int reg0;
-	
-  undefined auVar1 [16];
-  undefined auVar2 [16];
-  undefined auVar3 [16];
-  
-  auVar1 = _lqc2(*(undefined (*) [16])v1);
-  auVar2 = _lqc2(*(undefined (*) [16])v2);
-  auVar3 = _lqc2(*(undefined (*) [16])v3);
-  auVar2 = _vsub(auVar2,auVar1);
-  auVar1 = _vsub(auVar3,auVar1);
-  _vopmula(auVar2,auVar1);
-  auVar1 = _vopmsub(auVar1,auVar2);
-  auVar1 = _vsub(auVar1,auVar1);
+  u_int reg0;
+
+  undefined auVar1[16];
+  undefined auVar2[16];
+  undefined auVar3[16];
+
+  auVar1 = _lqc2(*(undefined(*)[16])v1);
+  auVar2 = _lqc2(*(undefined(*)[16])v2);
+  auVar3 = _lqc2(*(undefined(*)[16])v3);
+  auVar2 = _vsub(auVar2, auVar1);
+  auVar1 = _vsub(auVar3, auVar1);
+  _vopmula(auVar2, auVar1);
+  auVar1 = _vopmsub(auVar1, auVar2);
+  auVar1 = _vsub(auVar1, auVar1);
   auVar1 = _sqc2(auVar1);
-  *(undefined (*) [16])v0 = auVar1;
+  *(undefined(*)[16])v0 = auVar1;
   return;
 }
 
 void Vu0Normalize(float *v0, float *v1) {
-  undefined in_vf0 [16];
-  undefined auVar1 [16];
-  undefined auVar2 [16];
+  undefined in_vf0[16];
+  undefined auVar1[16];
+  undefined auVar2[16];
   undefined4 uVar3;
-  
-  auVar1 = _lqc2(*(undefined (*) [16])v1);
-  auVar2 = _vmul(auVar1,auVar1);
-  auVar2 = _vaddbc(auVar2,auVar2);
-  auVar2 = _vaddbc(auVar2,auVar2);
+
+  auVar1 = _lqc2(*(undefined(*)[16])v1);
+  auVar2 = _vmul(auVar1, auVar1);
+  auVar2 = _vaddbc(auVar2, auVar2);
+  auVar2 = _vaddbc(auVar2, auVar2);
   _vsqrt(auVar2);
   uVar3 = _vwaitq();
-  auVar2 = _vaddq(in_vf0,uVar3);
-  _vdiv(in_vf0,0,auVar2,0);
-  _vsub(in_vf0,in_vf0);
+  auVar2 = _vaddq(in_vf0, uVar3);
+  _vdiv(in_vf0, 0, auVar2, 0);
+  _vsub(in_vf0, in_vf0);
   uVar3 = _vwaitq();
-  auVar1 = _vmulq(auVar1,uVar3);
+  auVar1 = _vmulq(auVar1, uVar3);
   auVar1 = _sqc2(auVar1);
-  *(undefined (*) [16])v0 = auVar1;
+  *(undefined(*)[16])v0 = auVar1;
   return;
 }
 
 void Vu0ApplyMatrix(float *v0, float *m0[4], float *v1) {
-  undefined auVar1 [16];
-  undefined auVar2 [16];
-  undefined auVar3 [16];
-  undefined auVar4 [16];
-  undefined auVar5 [16];
-  
-  auVar1 = _lqc2((undefined  [16])*m0);
-  auVar2 = _lqc2((undefined  [16])m0[1]);
-  auVar3 = _lqc2((undefined  [16])m0[2]);
-  auVar4 = _lqc2((undefined  [16])m0[3]);
-  auVar5 = _lqc2(*(undefined (*) [16])v1);
-  _vmulabc(auVar1,auVar5);
-  _vmaddabc(auVar2,auVar5);
-  _vmaddabc(auVar3,auVar5);
-  auVar1 = _vmaddbc(auVar4,auVar5);
+  undefined auVar1[16];
+  undefined auVar2[16];
+  undefined auVar3[16];
+  undefined auVar4[16];
+  undefined auVar5[16];
+
+  auVar1 = _lqc2((undefined[16]) * m0);
+  auVar2 = _lqc2((undefined[16])m0[1]);
+  auVar3 = _lqc2((undefined[16])m0[2]);
+  auVar4 = _lqc2((undefined[16])m0[3]);
+  auVar5 = _lqc2(*(undefined(*)[16])v1);
+  _vmulabc(auVar1, auVar5);
+  _vmaddabc(auVar2, auVar5);
+  _vmaddabc(auVar3, auVar5);
+  auVar1 = _vmaddbc(auVar4, auVar5);
   auVar1 = _sqc2(auVar1);
-  *(undefined (*) [16])v0 = auVar1;
+  *(undefined(*)[16])v0 = auVar1;
   return;
 }
 
 void Vu0MulVector(float *v0, float *v1, float *v2) {
-  undefined auVar1 [16];
-  undefined auVar2 [16];
-  
-  auVar1 = _lqc2(*(undefined (*) [16])v1);
-  auVar2 = _lqc2(*(undefined (*) [16])v2);
-  auVar1 = _vmul(auVar1,auVar2);
+  undefined auVar1[16];
+  undefined auVar2[16];
+
+  auVar1 = _lqc2(*(undefined(*)[16])v1);
+  auVar2 = _lqc2(*(undefined(*)[16])v2);
+  auVar1 = _vmul(auVar1, auVar2);
   auVar1 = _sqc2(auVar1);
-  *(undefined (*) [16])v0 = auVar1;
+  *(undefined(*)[16])v0 = auVar1;
   return;
 }
 
 void Vu0FTOI0Vector(int *v0, float *v1) {
-  undefined auVar1 [16];
-  
-  auVar1 = _lqc2(*(undefined (*) [16])v1);
+  undefined auVar1[16];
+
+  auVar1 = _lqc2(*(undefined(*)[16])v1);
   auVar1 = _vftoi0(auVar1);
   auVar1 = _sqc2(auVar1);
-  *(undefined (*) [16])v0 = auVar1;
+  *(undefined(*)[16])v0 = auVar1;
   return;
 }

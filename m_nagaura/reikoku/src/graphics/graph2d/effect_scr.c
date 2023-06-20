@@ -3004,13 +3004,13 @@ void SubDither3(int type, float alp, float spd, u_char alpmx, u_char colmx) {
     sd2.b = 0x80;
     de2.alpha = 0x41;
     sd2.r = 0x80;
-    sd2.g = '\0';
+    sd2.g = 0;
     break;
   case 5:
     sd2.g = 0x80;
     de2.alpha = 0x41;
     sd2.r = 0x80;
-    sd2.b = '\0';
+    sd2.b = 0;
     break;
   case 6:
     de2.alpha = 0x49;
@@ -3018,7 +3018,7 @@ void SubDither3(int type, float alp, float spd, u_char alpmx, u_char colmx) {
   case 7:
     de2.alpha = 0x42;
   }
-  uVar6 = (uint)oalp;
+  uVar6 = oalp;
   if (uVar6 == local_100) {
     if ((ocol == local_fc) && (iVar9 = 0, numf_299 != 0)) {
       numf_299 = 0;
@@ -3066,6 +3066,7 @@ void SubDither3(int type, float alp, float spd, u_char alpmx, u_char colmx) {
 LAB_0012d288:
   oalp = (uchar)local_100;
   ocol = (uchar)local_fc;
+  // Note that either t or ot can be 0 and break
   GetCamI2DPos(&camera.i.x,&tx,&ty);
   GetCamI2DPos(&old_cam_i.x,&otx,&oty);
   sceVu0CopyVector(&old_cam_i,&camera.i);
@@ -3082,6 +3083,7 @@ LAB_0012d288:
   fVar2 = DAT_003552c4;
   if (stop_effects == 0) {
     cy = (cy + fVar19) - (float)((int)((cy + fVar19) * 0.0078125) << 7);
+    // Makeshift modulos, cx or cy can be MaxFloat!
     for (cx = (cx + fVar17) - (float)((int)((cx + fVar17) * 0.0078125) << 7); 128.0 < cx;
         cx = cx - 128.0) {
     }
