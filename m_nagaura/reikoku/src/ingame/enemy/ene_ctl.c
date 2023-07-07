@@ -707,23 +707,16 @@ void AEneEntry(u_char wrk_no, u_char dat_no) {
 }
 
 void EneRule(ENE_WRK *ew) {
-	u_char act_no;
-	u_char view_chk;
-	char *str1;
-	char *str2;
-	char *str3;
-	char *str_clr;
-	
-  byte bVar1;
-  byte bVar2;
-  uchar uVar3;
-  short sVar4;
-  uint uVar5;
-  ulong uVar6;
+  u_char act_no;
+  u_char view_chk;
   char *str;
+  char *str1;
+  char *str2;
+  char *str3;
+  char *str_clr;
   uchar g;
   uchar act_no;
-  
+
   str = "FUYU ENE   ";
   if (dbg_wrk.param_enetype == 0) {
     SetASCIIString2(0x10,430.0,(float)((uint)*(byte *)((int)&(ew->move_box).pos.x + 3) * 10 + 10),1,

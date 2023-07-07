@@ -15,7 +15,7 @@
   stts 0x2: "battle mode"
 
   # Movie_On: Type being played, 3 is FMV, 4 is ingame, the actual index is Event_No
-
+  # These are controlled by EventMain, reg t2: EvtNo a0: Ingame_wrk mode
 - Event_Wrk:
   Event_No 0xb / 0x1: "There's an old camera here. I think I can take a shot (opens save screen) This is the default event when nothing is selected"
   Event_No 0x16: "Ingame Cutscene - Room matters"
@@ -48,4 +48,4 @@
   Btl_Ene 085 Btl_Lock 1: "Koji first fight"
 
   Special_Event_no 127: "Cerimonial Rope (night 3)"
-# EventEnemySet - What I've been searching for this whole fuckin time
+#EventOpenMain, despite its name inferring it's openeing an event. It's specifically referring to Doors opened by player
