@@ -1,0 +1,2 @@
+#! /bin/bash
+wibo tools/cc/ee-gcc2.96/bin/ee-as.exe $1 $@

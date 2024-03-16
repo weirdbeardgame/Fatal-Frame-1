@@ -1,0 +1,37 @@
+name: Fatal Frame 1 (US)
+sha1: 5ac4626e0d76218e977b01f4fae5948de9a1755e
+options:
+  basename: SLUS_203.88
+  target_path: SLUS_203.88
+  base_path: .
+  compiler: GCC
+  find_file_boundaries: False
+  platform: ps2
+  create_undefined_funcs_auto: False
+  undefined_funcs_auto_path: undefined_funcs_auto.txt
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: undefined_syms_auto.txt
+  symbol_addrs_path: symbol_addrs.txt
+  asm_path: asm
+  src_path: src
+  build_path: build
+  extensions_path: tools/splat_ext
+  section_order: [".text", ".data", ".rodata", ".bss"]
+  auto_all_sections: [".data", ".rodata", ".bss"]
+  subalign: 8
+  disasm_unknown: True
+  named_regs_for_c_funcs: False
+segments:
+  - [0, databin, elf_header]
+  - name: main
+    type: code
+    start: 0x1000
+    vram: 0x100000
+    subsegments:
+    - [0x1000, asm, entry]
+    - [0x10b8, asm, crt0]
+    - [0x10c8, c, home/m_nagaura/reikoku/src/main/main]
+    - [0x1380, c, home/m_nagaura/reikoku/src/outgame/mode_slct]
+    - [0x4b30, databin]
+  - [0x1475b0, databin]
+  - [0x7828920]
