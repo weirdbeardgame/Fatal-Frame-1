@@ -7,3 +7,6 @@ asm/
 build.ninja
 permuter_settings.toml
 *.ld
+*.elf
+SLUS_203.88
+SLES_508.21
