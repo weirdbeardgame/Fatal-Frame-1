@@ -28,10 +28,11 @@ segments:
     start: 0x1000
     vram: 0x100000
     subsegments:
-    - [0x1000, asm, entry]
-    - [0x10b8, asm, crt0]
-    - [0x10c8, c, home/m_nagaura/reikoku/src/main/main]
-    - [0x1380, c, home/m_nagaura/reikoku/src/outgame/mode_slct]
-    - [0x4b30, databin]
+      - [0x1000, asm, entry]
+      - [0x10b8, asm, crt0]
+      - [0x10c8, c, main/main]
+      - [0x1380, c, outgame/mode_slct]
+      - [0x4b30, databin]
+      - [0x8800, c, ingame/ingame]
   - [0x1475b0, databin]
   - [0x7828920]

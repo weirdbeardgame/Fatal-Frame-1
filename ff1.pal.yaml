@@ -1,0 +1,40 @@
+name: Fatal Frame 1 (PAL)
+sha1: cb36d4365e70be9e9dc5bb66e2aa083811a39f12
+options:
+  basename: SLES_508.21
+  target_path: SLES_508.21
+  base_path: .
+  compiler: GCC
+  find_file_boundaries: False
+  platform: ps2
+  create_undefined_funcs_auto: False
+  undefined_funcs_auto_path: undefined_funcs_auto-pal.txt
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: undefined_syms_auto-pal.txt
+  symbol_addrs_path: symbol_addrs.txt
+  asm_path: asm
+  src_path: src
+  build_path: build
+  extensions_path: tools/splat_ext
+  section_order: [".text", ".data", ".rodata", ".bss"]
+  auto_all_sections: [".data", ".rodata", ".bss"]
+  subalign: 8
+  disasm_unknown: True
+  named_regs_for_c_funcs: False
+segments:
+  - [0, databin, elf_header]
+  - name: main
+    type: code
+    start: 0x1000
+    vram: 0x100000
+    subsegments:
+      - [0x1000, asm, entry]
+      - [0x1008, asm, crt0]
+      - [0x10c8, c, main/main]
+      - [0x1380, asm, unk]
+      #- [0x8a4e0, c, ingame/ingame]
+      #- [0x108538, c, ingame/plyr/plyr_ctl]
+      #- [0x154f00, data, data] # .data
+      #- [0x250980, .rodata, rodata]
+  - [0x14b340, databin]
+  - [0x7961956]

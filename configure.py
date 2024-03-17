@@ -16,10 +16,10 @@ from splat.segtypes.linker_entry import LinkerEntry
 ROOT = Path(__file__).parent.resolve()
 TOOLS_DIR = ROOT / "tools"
 
-YAML_FILE = "ff1.us.yaml"
-BASENAME = "SLUS_203.88"
+YAML_FILE = "ff1.pal.yaml"
+BASENAME = "SLES_508.21"
 LD_PATH = f"{BASENAME}.ld"
-ELF_PATH = f"build/{BASENAME}"
+ELF_PATH = f"{BASENAME}"
 MAP_PATH = f"build/{BASENAME}.map"
 PRE_ELF_PATH = f"build/{BASENAME}.elf"
 
@@ -183,7 +183,7 @@ def build_stuff(linker_entries: List[LinkerEntry]):
     ninja.build(
         ELF_PATH + ".ok",
         "sha1sum",
-        "checksum.sha1",
+        "pal-checksum.sha1",
         implicit=[ELF_PATH],
     )
 
